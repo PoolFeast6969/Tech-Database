@@ -15,7 +15,10 @@ function load_database() {
 function render_database() {
     window.data = data;
     $(data).each(function(index, value) {
-      console.error(value);
+      var title = value[Object.keys(value)[2]];
+      var description = value[Object.keys(value)[3]];
+      var category = value[Object.keys(value)[0]];
+      console.log(title + " " + category + " " + description);
     });
 }
 
