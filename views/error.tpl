@@ -1,2 +1,1 @@
-Oh no, it's a {{code}}!
-{{explanation}}!
+Oh no, it's a {{code}}! {{explanation}}!
