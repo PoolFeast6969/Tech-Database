@@ -13,12 +13,14 @@ function load_database() {
         dataType: "json",
         success: function(data) {
           console.log('Retrieved Database');
-          render_page(data);
+          window.data = data;
+          render_page();
         }
     });
 }
 
-function render_page(data) {
+function render_page() {
+    var data = window.data;
     $(data).each(function(index, value) {
       var title = value[Object.keys(value)[2]];
       var description = value[Object.keys(value)[3]];
