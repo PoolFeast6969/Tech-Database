@@ -3,6 +3,7 @@ function clear_page() {
     $('body').addClass('loading');
     var spinner = $('#spinner').html();
     $('section').append(spinner);
+    console.log('Cleared Page');
     load_database();
 }
 
@@ -20,7 +21,7 @@ function load_database() {
 }
 
 function render_page() {
-    var data = window.data;
+    window.data = data;
     $(data).each(function(index, value) {
       var title = value[Object.keys(value)[2]];
       var description = value[Object.keys(value)[3]];
@@ -30,6 +31,7 @@ function render_page() {
     });
     $('.spinner').remove();
     $('body').removeClass('loading');
+    console.log('Rendered Page');
 }
 
 function send_to_database(e) {
