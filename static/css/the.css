@@ -7,16 +7,13 @@ body {
     margin: 0 auto;
     padding-bottom: 80px;
 }
-body.loading {
-    opacity: 50%;
-}
 header {
     font-size: 500%;
-    color: rgba(0,0,0,0.4);
+    color: rgba(255,255,255,0.5);
     padding: 7px;
     text-align: center;
 }
-.addbar {
+nav {
     position: fixed;
     z-index: 2;
     left: calc(-50vw + 50%);
@@ -26,16 +23,19 @@ header {
     transition: all 0.5s;
     display: block;
 }
-.addbar:focus {
+body.loading nav {
+    opacity: 0;
+}
+nav:focus {
     bottom: 0;
     top: initial;
 }
-.addbar > div {
+nav > div {
     max-width: 50em;
     margin: 0 auto;
     text-align: center;
 }
-.addbar > div:first-child {
+nav > div:first-child {
     height: 80px;
     font-size: 400%;
     color: rgba(255,255,255,0.2);

@@ -1,29 +1,13 @@
 <!DOCTYPE HTML>
 <html lang="en">
     <head>
-        <title>Tech Database</title>
+        <title>IT Terminology</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <link rel="stylesheet" href="the.css">
         <script src="jquery-2.1.3.min.js"></script>
         <script src="the.js"></script>
-    </head>
-    <body>
-        <header>
-            Technologies
-        </header>
-        <div class="addbar">
-            <div class="bartitle">
-                Add Entry
-            </div>
-            <div class="barinput">
-                <input>
-                <input>
-                <input>
-                <input>
-            </div>
-        </div>
-    	<template id="spinner">
+        <template id="spinner">
             <div class="spinner">
         	    <div class="spinner-container container1">
         	    	<div class="circle1"></div>
@@ -47,30 +31,29 @@
         </template>
         <template id="entry">
             <div class="entry">
-                <div class="title">$title</div>
-                <article>$explanation</article>
-                <div class="catagory">$catagory</div>
+                <div class="title">{0}</div>
+                <article>{1}</article>
+                <div class="catagory">{2}</div>
             </div>
         </template>
-        <div class="entry">
-            <div class="title">Things</div>
-            <article>They commonly do stuff</article>
-            <div class="catagory">Other tings</div>
-        </div>
-        <div class="entry">
-            <div class="title">Things</div>
-            <article>They commonly do stuff</article>
-            <div class="catagory">Other tings</div>
-        </div>
-        <div class="entry">
-            <div class="title">Things</div>
-            <article>They commonly do stuff</article>
-            <div class="catagory">Other tings</div>
-        </div>
-        <div class="entry">
-            <div class="title">Things</div>
-            <article>They commonly do stuff</article>
-            <div class="catagory">Other tings</div>
-        </div>
+    </head>
+    <body>
+        <header>
+            IT Terminology
+        </header>
+        <nav>
+            <div class="title">
+                Add Entry
+            </div>
+            <div class="input">
+                <input>
+                <input>
+                <input>
+                <input>
+            </div>
+        </nav>
+        <section>
+            U Have JS boi??
+        </section>
     </body>
 </html>
