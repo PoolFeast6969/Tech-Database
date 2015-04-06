@@ -45,12 +45,17 @@
             <div class="title">
                 Add Entry
             </div>
-            <div class="input">
-                <input>
-                <input>
-                <input>
-                <input>
-            </div>
+            <form action="/" method="POST" class="input">
+                <input type="text" name="title" placeholder="Title">
+                <input type="text" name"catagory" placeholder="Catagory">
+                <input type="textarea" name="description" placeholder="Description">
+                <input value="Add Entry" type="submit">
+            </form>
+            <script>
+                $('nav').click(function() {
+                    $('nav').addClass('up');
+                });
+            </script>
         </nav>
         <section>
             U Have JS boi??

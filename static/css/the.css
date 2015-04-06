@@ -20,13 +20,12 @@ nav {
     width: 100vw;
     background: rgb(27,163,156);
     top: calc(100vh - 80px);
-    transition: all 0.5s;
     display: block;
 }
 body.loading nav {
     opacity: 0;
 }
-nav:focus {
+nav.up {
     bottom: 0;
     top: initial;
 }

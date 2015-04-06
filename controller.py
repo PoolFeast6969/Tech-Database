@@ -1,5 +1,5 @@
 from bottle import route, install, template, error, run, static_file, get, HTTP_CODES, request
-import json, sqlite3
+import json, sqlite3, logging
 
 @get('/<filename:re:.*\.js>')
 def javascripts(filename):
@@ -15,6 +15,16 @@ def load_page():
 
 @route('/', method='POST')
 def send_database():
+    title = request.forms.get('title')
+    catagory = request.forms.get('catagory')
+    description = request.forms.get('description')
+    if title is None or catagory is None or description is None:
+        return return_database()
+    else:
+        logger.info(title)
+
+
+def return_database():
     connection = sqlite3.connect("glossary.db")
     connection.row_factory = dict_factory
     cursor = connection.cursor()
