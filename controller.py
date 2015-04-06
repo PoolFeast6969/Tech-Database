@@ -14,15 +14,16 @@ def load_page():
     return template('home.tpl')
 
 @route('/', method='POST')
-def send_database():
-    title = request.forms.get('title')
-    catagory = request.forms.get('catagory')
-    description = request.forms.get('description')
-    if title is None or catagory is None or description is None:
+def ajax_communicate():
+    data = request.body.read()
+    if data == "":
         return return_database()
     else:
-        logger.info(title)
-
+        data = json.loads(data)
+        connection = sqlite3.connect("glossary.db")
+        cursor = connection.cursor()
+        cursor.execute("UPDATE * FROM table_definitions")
+        return return_database()
 
 def return_database():
     connection = sqlite3.connect("glossary.db")

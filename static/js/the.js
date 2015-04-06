@@ -36,7 +36,6 @@ function render_page() {
 
 $('form').submit( function(event) {
     clear_page();
-    alert('hey');
     $.ajax({
         type: 'POST',
         url: '/',
