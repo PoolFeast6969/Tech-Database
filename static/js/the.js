@@ -34,24 +34,22 @@ function render_page() {
     console.log('Rendered Page');
 }
 
-function send_to_database() {
-    $('.barinput').submit( function(event) {
-        clear_page();
-        $.ajax({
-            type: 'POST',
-            url: '/',
-            dataType: "json",
-            data: $(this).serialize(),
-            success: function(data) {
-                console.log('Sent and Retrieved Database');
-                window.data = data;
-                render_page();
-            }
-        });
-        event.defaultPrevented();
-        console.log($(this).serialize());
+$('form').submit( function(event) {
+    clear_page();
+    alert('hey');
+    $.ajax({
+        type: 'POST',
+        url: '/',
+        dataType: "json",
+        data: JSON.stringify($('form').serializeArray()),
+        success: function(data) {
+            console.log('Sent Entry and Retrieved Database');
+            window.data = data;
+            render_page();
+        }
     });
-}
+    event.defaultPrevented();
+});
 
 String.prototype.format = function() {
   var args = arguments;

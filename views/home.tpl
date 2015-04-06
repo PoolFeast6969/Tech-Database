@@ -45,10 +45,10 @@
             <div class="title">
                 Add Entry
             </div>
-            <form action="/" method="POST" class="input">
+            <form action="/" method="POST">
                 <input type="text" name="title" placeholder="Title">
-                <input type="text" name"catagory" placeholder="Catagory">
-                <input type="textarea" name="description" placeholder="Description">
+                <input type="text" name="catagory" placeholder="Catagory">
+                <textarea rows="10" cols="60" name="description" placeholder="Description"></textarea>
                 <input value="Add Entry" type="submit">
             </form>
             <script>
