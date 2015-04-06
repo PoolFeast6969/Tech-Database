@@ -1,5 +1,5 @@
 from bottle import route, install, template, error, run, static_file, get, HTTP_CODES, request
-import json, sqlite3, logging
+import json, sqlite3, logging, sys
 
 @get('/<filename:re:.*\.js>')
 def javascripts(filename):
@@ -19,10 +19,9 @@ def ajax_communicate():
     if data == "":
         return return_database()
     else:
-        data = json.loads(data)
-        connection = sqlite3.connect("glossary.db")
-        cursor = connection.cursor()
-        cursor.execute("UPDATE * FROM table_definitions")
+        sys.stdout.write(str(data))
+        data = parse_json_stream(data)
+        print data
         return return_database()
 
 def return_database():
@@ -37,6 +36,13 @@ def dict_factory(cursor, row):
     for idx, col in enumerate(cursor.description):
         d[col[0]] = row[idx]
     return d
+
+def parse_json_stream(stream):
+    decoder = json.JSONDecoder()
+    while stream:
+        obj, idx = decoder.raw_decode(stream)
+        yield obj
+        stream = stream[idx:].lstrip()
 
 @error(300)
 def error_return(error):

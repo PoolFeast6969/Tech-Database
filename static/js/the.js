@@ -34,20 +34,16 @@ function render_page() {
     console.log('Rendered Page');
 }
 
-$('form').submit( function(event) {
+$('form').submit(function( event ) {
+    event.preventDefault();
     clear_page();
     $.ajax({
         type: 'POST',
         url: '/',
         dataType: "json",
-        data: JSON.stringify($('form').serializeArray()),
-        success: function(data) {
-            console.log('Sent Entry and Retrieved Database');
-            window.data = data;
-            render_page();
-        }
+        data: JSON.stringify($('form').serializeArray())
     });
-    event.defaultPrevented();
+    load_database()
 });
 
 String.prototype.format = function() {
