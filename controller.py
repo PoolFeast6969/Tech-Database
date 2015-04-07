@@ -1,5 +1,5 @@
 from bottle import route, install, template, error, run, static_file, get, HTTP_CODES, request
-import json, sqlite3, logging, sys
+import simplejson, sqlite3, logging, sys, json
 
 @get('/<filename:re:.*\.js>')
 def javascripts(filename):
@@ -19,7 +19,16 @@ def ajax_communicate():
     if data == "":
         return return_database()
     else:
-        return data
+        entry = json.loads(data)
+        add_to_database(entry['title'], entry['description'], entry['category'])
+        return return_database()
+
+def add_to_database(title, description, category):
+    connection = sqlite3.connect("glossary.db")
+    cursor = connection.cursor()
+    cursor.execute("INSERT INTO table_definitions (str_term, str_definition, str_category) VALUES ('%s', '%s', '%s')" %(title, description, category,))
+    connection.commit()
+    connection.close()
 
 def return_database():
     connection = sqlite3.connect("glossary.db")

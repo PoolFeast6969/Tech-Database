@@ -33,7 +33,7 @@
             <div class="entry">
                 <div class="title">{0}</div>
                 <article>{1}</article>
-                <div class="catagory">{2}</div>
+                <div class="category">{2}</div>
             </div>
         </template>
     </head>
@@ -45,11 +45,11 @@
             <div class="title">
                 Add Entry
             </div>
-            <form action="/" method="POST">
+            <form action="/" method="POST" id="addentry">
                 <input type="text" name="title" placeholder="Title">
-                <input type="text" name="catagory" placeholder="Catagory">
-                <textarea rows="10" cols="60" name="description" placeholder="Description"></textarea>
-                <input class="butan" value="Add Entry" type="button">
+                <input type="text" name="category" placeholder="Category">
+                <textarea wrap="physical" rows="10" cols="60" name="description" placeholder="Description"></textarea>
+                <input type="button" onclick="submit_form()">
             </form>
             <script>
                 $('nav').click(function() {

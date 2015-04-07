@@ -34,25 +34,38 @@ function render_page() {
     console.log('Rendered Page');
 }
 
-function submit_form() {
+function send(outgoing) {
     clear_page();
     $.ajax({
         url: '/',
         type: 'post',
-        dataType: 'json',
-        data: form_to_json('form'),
+        dataType: "json",
+        data: outgoing.jsonObject(),
         success: function(data) {
-            console.log("hey!"+data);
+            console.log("Retrieved Database");
+            window.data = data;
+            render_page();
             }
     });
+    console.log("Sent New Entry");
 }
 
-function form_to_json (selector) {
-  var ary = $('form').serializeArray();
-  var obj = {};
-  for (var a = 0; a < ary.length; a++) obj[ary[a].name] = ary[a].value;
-  return obj;
-}
+$.fn.jsonObject = function()
+{
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return JSON.stringify(o);
+};
 
 String.prototype.format = function() {
   var args = arguments;
@@ -67,3 +80,7 @@ String.prototype.format = function() {
 $( document ).ready(function() {
     load_database();
 });
+
+function submit_form() {
+    send($('#addentry'));
+}
