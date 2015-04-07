@@ -19,10 +19,7 @@ def ajax_communicate():
     if data == "":
         return return_database()
     else:
-        sys.stdout.write(str(data))
-        data = parse_json_stream(data)
-        print data
-        return return_database()
+        return data
 
 def return_database():
     connection = sqlite3.connect("glossary.db")

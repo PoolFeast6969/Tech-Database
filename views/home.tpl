@@ -49,7 +49,7 @@
                 <input type="text" name="title" placeholder="Title">
                 <input type="text" name="catagory" placeholder="Catagory">
                 <textarea rows="10" cols="60" name="description" placeholder="Description"></textarea>
-                <input value="Add Entry" type="submit">
+                <input class="butan" value="Add Entry" type="button">
             </form>
             <script>
                 $('nav').click(function() {

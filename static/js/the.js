@@ -34,17 +34,25 @@ function render_page() {
     console.log('Rendered Page');
 }
 
-$('form').submit(function( event ) {
-    event.preventDefault();
+function submit_form() {
     clear_page();
     $.ajax({
-        type: 'POST',
         url: '/',
-        dataType: "json",
-        data: JSON.stringify($('form').serializeArray())
+        type: 'post',
+        dataType: 'json',
+        data: form_to_json('form'),
+        success: function(data) {
+            console.log("hey!"+data);
+            }
     });
-    load_database()
-});
+}
+
+function form_to_json (selector) {
+  var ary = $('form').serializeArray();
+  var obj = {};
+  for (var a = 0; a < ary.length; a++) obj[ary[a].name] = ary[a].value;
+  return obj;
+}
 
 String.prototype.format = function() {
   var args = arguments;
