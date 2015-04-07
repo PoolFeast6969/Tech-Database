@@ -1,6 +1,7 @@
 function clear_page() {
     $('section').empty();
     $('body').addClass('loading');
+    $('body').removeClass('up');
     var spinner = $('#spinner').html();
     $('section').append(spinner);
     console.log('Cleared Page');
@@ -12,17 +13,17 @@ function load_database() {
         type: 'POST',
         url: '/',
         dataType: "json",
-        success: function(data) {
+        success: function(entries) {
             console.log('Retrieved Database');
-            window.data = data;
+            window.entries = entries;
             render_page();
         }
     });
 }
 
 function render_page() {
-    window.data = data;
-    $(data).each(function(index, value) {
+    window.entries = entries;
+    $(entries).each(function(index, value) {
           var title = value[Object.keys(value)[2]];
           var description = value[Object.keys(value)[3]];
           var category = value[Object.keys(value)[0]];
@@ -34,20 +35,35 @@ function render_page() {
     console.log('Rendered Page');
 }
 
-function send(outgoing) {
+function add_entry(entry) {
     clear_page();
     $.ajax({
         url: '/',
         type: 'post',
         dataType: "json",
-        data: outgoing.jsonObject(),
-        success: function(data) {
+        data: entry.jsonObject(),
+        success: function(entries) {
             console.log("Retrieved Database");
-            window.data = data;
+            window.entries = entries;
             render_page();
             }
     });
     console.log("Sent New Entry");
+}
+
+function update_local_entry(entry) {
+    var title = entry[0][0]['value'];
+    var description = entry[0][2]['value'];
+    var category = entry[0][1]['value'];
+    var template = $('#entry').html().format(title, description, category);
+    if ( $('#live_template' ).length ) {
+        $('div[id=live_template]').remove();
+        $('section').append(template);
+        $('section div:last-child').attr('id','live_template');
+    } else {
+        $('section').append(template).focus();
+        $('section div:last-child').attr('id','live_template');
+    }
 }
 
 $.fn.jsonObject = function()
@@ -79,8 +95,17 @@ String.prototype.format = function() {
 
 $( document ).ready(function() {
     load_database();
-});
 
-function submit_form() {
-    send($('#addentry'));
-}
+    $('input[value="Add Entry"]').click(function() {
+        add_entry($('#entryform'));
+        $('#entryform *').empty();
+    });
+
+    $('#entryform').keyup(function() {
+        update_local_entry($('#entryform'));
+    });
+
+    $('nav').click(function() {
+        $('body').addClass('up');
+    });
+});
