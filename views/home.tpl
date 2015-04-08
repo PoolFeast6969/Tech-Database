@@ -47,8 +47,8 @@
             </div>
             <form id="entryform">
                 <input type="text" name="title" placeholder="Title">
-                <input type="text" name="category" placeholder="Category">
                 <textarea wrap="physical" rows="10" cols="60" name="description" placeholder="Description"></textarea>
+                <input type="text" name="category" placeholder="Category">
                 <input type="button" value="Add Entry">
             </form>
         </nav>

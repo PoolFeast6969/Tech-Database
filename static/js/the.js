@@ -53,8 +53,8 @@ function add_entry(entry) {
 
 function update_local_entry(entry) {
     var title = entry[0][0]['value'];
-    var description = entry[0][2]['value'];
-    var category = entry[0][1]['value'];
+    var description = entry[0][1]['value'];
+    var category = entry[0][2]['value'];
     var template = $('#entry').html().format(title, description, category);
     if ( $('#live_template' ).length ) {
         $('div[id=live_template]').remove();
@@ -103,9 +103,18 @@ $( document ).ready(function() {
 
     $('#entryform').keyup(function() {
         update_local_entry($('#entryform'));
+        $('html, body').animate({
+           scrollTop: $(document).height()-$(window).height()},
+           1000,
+           "swing"
+        );
     });
 
-    $('nav').click(function() {
-        $('body').addClass('up');
+    $('nav div').click(function() {
+        if ($('body').hasClass('up') ) {
+            $('body').removeClass('up');
+        } else {
+            $('body').addClass('up');
+        }
     });
 });
