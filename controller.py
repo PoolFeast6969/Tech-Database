@@ -1,5 +1,5 @@
 from bottle import route, install, template, error, run, static_file, get, HTTP_CODES, request
-import simplejson, sqlite3, logging, sys, json
+import sqlite3, json
 
 @get('/<filename:re:.*\.js>')
 def javascripts(filename):
